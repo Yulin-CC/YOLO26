@@ -206,3 +206,11 @@ results.csv
 
 # CI test asset cache
 .ultralytics_cache/
+
+# 推理结果目录（QuickStart 自动派生）
+**/repro/
+**/Repro/
+
+# 软连接
+/pyproject.toml
+/LICENSE

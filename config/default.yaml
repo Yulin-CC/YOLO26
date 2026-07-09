@@ -1,0 +1,59 @@
+# YOLO26 默认配置（detect / segment）
+# 脚本中若传入同名参数（如 0-QuickStart/*.sh），脚本参数优先于此文件
+# =============================================================================
+# 调参思路
+# =============================================================================
+# 【防止过拟合】
+# A. 适当增大 batch、使用 yolo26 预训练权重
+# B. 控制 epochs，观察 val mAP 曲线
+#
+# 【提升召回】
+# A. 推理时降低 conf 阈值
+# B. 适当增大 imgsz
+# =============================================================================
+
+# ========== 任务类型 ==========
+task: detect  # detect | segment
+
+# ========== 数据集参数 ==========
+dataset:
+  yaml: "data/0-coco8.yaml"   # segment 时改为 data/0-coco8-seg.yaml
+
+# ========== 训练参数 ==========
+train:
+  project: "exp01-coco8-yolo26"         # 实验名（子目录名）
+  model: ""                             # 留空则按 task 自动选择 yolo26s.pt / yolo26s-seg.pt
+  dev_id: "0"                           # GPU ID，多卡用逗号分隔如 "0,1"
+  epochs: 100                           # 训练轮数
+  batch: 16                             # batch size
+  imgsz: 640                            # 输入图像尺寸
+  workers: 8                            # DataLoader workers
+
+# ========== 推理参数 ==========
+predict:
+  dev_id: 0
+  weights: ""                           # 留空则按 task + project 自动推导
+  dataset: "ultralytics/assets"         # 测试输入（单文件或目录）
+  imgsz: 640
+  conf: 0.4                             # 置信度阈值
+  iou: 0.45                             # NMS IoU 阈值
+  save_conf: true
+  save_crop: false                      # detect 可用；segment 建议 false
+  retina_masks: true                    # segment 推理时启用高分辨率 mask
+
+# ========== 评估参数 ==========
+eval:
+  dev_id: 0
+  weights: ""
+  dataset: ""                           # 留空则按 task 自动选择 coco8 / coco8-seg yaml
+  imgsz: 640
+  conf: 0.4
+  iou: 0.6
+
+# ========== 导出参数 ==========
+export:
+  dev_id: 0
+  weights: ""
+  imgsz: [640, 640]
+  dynamic: false
+  format: "onnx"                        # onnx / engine / openvino 等
