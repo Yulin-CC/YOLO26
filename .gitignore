@@ -129,9 +129,10 @@ venv.bak/
 .spyderproject
 .spyproject
 
-# VSCode project settings
+# VSCode / Cursor project settings
 .vscode/
 .devcontainer/
+.cursor/
 
 # Rope project settings
 .ropeproject
