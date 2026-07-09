@@ -23,10 +23,14 @@ dataset="data/0-Person.yaml"           # 数据集 yaml
 
 
 #---------------#
-# 切换到虚拟环境
+# 切换到虚拟环境（conda 路径因机器而异，clone 后请修改 CONDA_BASE）
+#   常见：$HOME/miniconda3 | $HOME/anaconda3 | /opt/conda
+#   查找：dirname "$(dirname "$(which conda)")"
+#   环境名 yolo 须与 README §1 中 conda create -n 一致
 #---------------#
-source /home/ubuntu/miniconda3/etc/profile.d/conda.sh
-conda activate yulin
+CONDA_BASE="${CONDA_BASE:-$HOME/miniconda3}"   # 本机示例：/home/ubuntu/miniconda3
+source "$CONDA_BASE/etc/profile.d/conda.sh"
+conda activate yolo
 
 
 #---------------#
