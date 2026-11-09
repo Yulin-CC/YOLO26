@@ -1,6 +1,6 @@
 # 🚀 YOLO26 / 使用指南
 
-基于 Ultralytics 上游源码的 **YOLO26 检测与分割** 项目，通过 `task` 变量切换任务，日常入口统一在 `0-QuickStart/`。
+基于 Ultralytics 上游源码的 **YOLO26 检测与分割** 项目，通过 `task` 变量切换任务，日常入口统一在 `0-QuickStart/`，Agent 训练 / 验证 / 推理工作目录在 `0-Agent-demo/`。
 
 ## 更新日志
 
@@ -108,6 +108,7 @@ bash 0-QuickStart/3-export.sh         # 导出 ONNX
 ```
 ultralytics/
 ├── 0-QuickStart/              # 训练 / 推理 / 评估 / 导出入口
+├── 0-Agent-demo/              # Agent 训练 / 验证 / 推理工作目录
 ├── 1-data-process/            # 数据集整理与格式转换
 │   ├── 1-create_dataset.sh            # 数据集一键整理（task + platform）
 │   └── utils/
